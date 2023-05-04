@@ -11,6 +11,10 @@
 		827B06962A034A1500362A5B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06952A034A1500362A5B /* ContentView.swift */; };
 		827B06982A034A1900362A5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 827B06972A034A1900362A5B /* Assets.xcassets */; };
 		827B069C2A034A1900362A5B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 827B069B2A034A1900362A5B /* Preview Assets.xcassets */; };
+		827B06A32A034A4100362A5B /* ReadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06A22A034A4000362A5B /* ReadManager.swift */; };
+		827B06A62A0352F300362A5B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06A52A0352F300362A5B /* DataManager.swift */; };
+		827B06A82A03530200362A5B /* UserDefaultAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06A72A03530200362A5B /* UserDefaultAccess.swift */; };
+		827B06AB2A03533B00362A5B /* UserDefaultAccess+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06AA2A03533B00362A5B /* UserDefaultAccess+Keys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		827B06972A034A1900362A5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		827B06992A034A1900362A5B /* Read4All.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Read4All.entitlements; sourceTree = "<group>"; };
 		827B069B2A034A1900362A5B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		827B06A22A034A4000362A5B /* ReadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadManager.swift; sourceTree = "<group>"; };
+		827B06A52A0352F300362A5B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		827B06A72A03530200362A5B /* UserDefaultAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultAccess.swift; sourceTree = "<group>"; };
+		827B06AA2A03533B00362A5B /* UserDefaultAccess+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaultAccess+Keys.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				827B06932A034A1500362A5B /* Read4AllApp.swift */,
+				827B06A92A03531100362A5B /* Helpers */,
+				827B06A42A0352E700362A5B /* Managers */,
 				827B06952A034A1500362A5B /* ContentView.swift */,
 				827B06972A034A1900362A5B /* Assets.xcassets */,
 				827B06992A034A1900362A5B /* Read4All.entitlements */,
@@ -67,6 +77,24 @@
 				827B069B2A034A1900362A5B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		827B06A42A0352E700362A5B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				827B06A22A034A4000362A5B /* ReadManager.swift */,
+				827B06A52A0352F300362A5B /* DataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		827B06A92A03531100362A5B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				827B06A72A03530200362A5B /* UserDefaultAccess.swift */,
+				827B06AA2A03533B00362A5B /* UserDefaultAccess+Keys.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				827B06A32A034A4100362A5B /* ReadManager.swift in Sources */,
+				827B06A62A0352F300362A5B /* DataManager.swift in Sources */,
+				827B06AB2A03533B00362A5B /* UserDefaultAccess+Keys.swift in Sources */,
 				827B06962A034A1500362A5B /* ContentView.swift in Sources */,
 				827B06942A034A1500362A5B /* Read4AllApp.swift in Sources */,
+				827B06A82A03530200362A5B /* UserDefaultAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
