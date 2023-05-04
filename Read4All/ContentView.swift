@@ -15,11 +15,23 @@ struct ContentView: View {
     @State var text = DataStorage.lastText
     @State var volume: Float = 0
 
+    @State private var showingAlert = false
+    @State private var textSelected = false
+
     var body: some View {
         VStack {
             TextEditor(text: $text).onChange(of: text) { _ in
                 DataStorage.lastText = text
                 manager.reset()
+            }.onReceive(NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)) { obj in
+                guard !textSelected else { return }
+                if let textView = obj.object as? NSTextView {
+                    manager.textView = textView
+                    manager.hasSelectedNew = true
+                    manager.setTime(textView.selectedRange().location)
+                    manager.read(text: text)
+                    textSelected = true
+                }
             }
 
             ProgressView(value: manager.currentSpeak, total: manager.totalSpeak)
@@ -27,13 +39,21 @@ struct ContentView: View {
             HStack {
                 Button {
                     if manager.isSpeaking {
-                        manager.stop()
+                        showingAlert = true
                     } else {
                         manager.read(text: text)
                         manager.volume(volume)
                     }
                 } label: {
                     Text(manager.isSpeaking ? "Stop" : "Read")
+                }.alert(
+                    "Do you really want stop and reset the read?",
+                    isPresented: $showingAlert
+                ) {
+                    Button("Reset", role: .destructive) {
+                        manager.stop()
+                        textSelected = false
+                    }
                 }
 
                 Spacer()

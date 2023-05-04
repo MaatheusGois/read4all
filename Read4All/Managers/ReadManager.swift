@@ -12,8 +12,10 @@ final class ReadTextManager: NSObject, ObservableObject {
     @Published var synthesizer = AVSpeechSynthesizer()
     @Published var speechUtterance: AVSpeechUtterance?
     @Published var isSpeaking: Bool = false
+    @Published var hasSelectedNew: Bool = false
     @Published var totalSpeak: Float = .init(DataStorage.lastText.count)
     @Published var currentSpeak: Float = .init(DataStorage.lastTime)
+    @Published var textView: NSTextView?
 
     override init() {
         super.init()
@@ -32,6 +34,7 @@ final class ReadTextManager: NSObject, ObservableObject {
             synthesizer.stopSpeaking(at: .immediate)
             synthesizer.speak(speechUtterance)
             isSpeaking = true
+            hasSelectedNew = false
         }
     }
 
@@ -65,6 +68,11 @@ final class ReadTextManager: NSObject, ObservableObject {
     func volume(_ volume: Float) {
         speechUtterance?.volume = volume
     }
+
+    func setTime(_ time: Int) {
+        DataStorage.lastTime = time
+        currentSpeak = .init(DataStorage.lastTime)
+    }
 }
 
 extension ReadTextManager: AVSpeechSynthesizerDelegate {
@@ -73,16 +81,17 @@ extension ReadTextManager: AVSpeechSynthesizerDelegate {
         willSpeakRangeOfSpeechString characterRange: NSRange,
         utterance: AVSpeechUtterance
     ) {
-        DataStorage.lastTime += 1
+        guard !hasSelectedNew else { return }
+        let newTimer = DataStorage.lastTime + characterRange.length
+        setTime(newTimer)
+        textView?.setSelectedRange(NSRange(location: DataStorage.lastTime, length: characterRange.length))
     }
 }
 
 extension String {
-    var count: Int { split(separator: " ").count }
-
     func getInRange(_ range: Int) -> Self {
-        var array = split(separator: " ").map { String($0) }
+        var array = Array(self).map { String($0) }
         array = Array(array[range..<array.count])
-        return array.joined(separator: " ")
+        return array.joined(separator: "")
     }
 }
