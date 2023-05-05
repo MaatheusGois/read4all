@@ -15,7 +15,12 @@ final class ReadTextManager: NSObject, ObservableObject {
     @Published var hasSelectedNew: Bool = false
     @Published var totalSpeak: Float = .init(DataStorage.lastText.count)
     @Published var currentSpeak: Float = .init(DataStorage.lastTime)
+
+    #if !os(tvOS)
     @Published var textView: NSTextView?
+    #endif
+
+    @Published var speed: Double = 0.5
 
     override init() {
         super.init()
@@ -27,8 +32,7 @@ final class ReadTextManager: NSObject, ObservableObject {
     ) {
         let text = text.getInRange(DataStorage.lastTime)
         speechUtterance = .init(string: text)
-        speechUtterance?.rate = 1
-        speechUtterance?.pitchMultiplier = 4
+        speechUtterance?.rate = Float(speed)
         speechUtterance?.voice = AVSpeechSynthesisVoice(language: "pt-BR")
         if let speechUtterance {
             synthesizer.stopSpeaking(at: .immediate)
@@ -65,10 +69,6 @@ final class ReadTextManager: NSObject, ObservableObject {
         currentSpeak = .init(DataStorage.lastTime)
     }
 
-    func volume(_ volume: Float) {
-        speechUtterance?.volume = volume
-    }
-
     func setTime(_ time: Int) {
         DataStorage.lastTime = time
         currentSpeak = .init(DataStorage.lastTime)
@@ -84,7 +84,9 @@ extension ReadTextManager: AVSpeechSynthesizerDelegate {
         guard !hasSelectedNew else { return }
         let newTimer = DataStorage.lastTime + characterRange.length
         setTime(newTimer)
+        #if !os(tvOS)
         textView?.setSelectedRange(NSRange(location: DataStorage.lastTime, length: characterRange.length))
+        #endif
     }
 }
 

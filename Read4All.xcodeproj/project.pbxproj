@@ -15,6 +15,7 @@
 		827B06A62A0352F300362A5B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06A52A0352F300362A5B /* DataManager.swift */; };
 		827B06A82A03530200362A5B /* UserDefaultAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06A72A03530200362A5B /* UserDefaultAccess.swift */; };
 		827B06AB2A03533B00362A5B /* UserDefaultAccess+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B06AA2A03533B00362A5B /* UserDefaultAccess+Keys.swift */; };
+		82DDEFE72A0526BF0096951A /* LanguagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DDEFE62A0526BF0096951A /* LanguagesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		827B06A52A0352F300362A5B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		827B06A72A03530200362A5B /* UserDefaultAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultAccess.swift; sourceTree = "<group>"; };
 		827B06AA2A03533B00362A5B /* UserDefaultAccess+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaultAccess+Keys.swift"; sourceTree = "<group>"; };
+		82DDEFE62A0526BF0096951A /* LanguagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				827B06932A034A1500362A5B /* Read4AllApp.swift */,
+				82DDEFE52A0526B30096951A /* Data */,
 				827B06A92A03531100362A5B /* Helpers */,
 				827B06A42A0352E700362A5B /* Managers */,
 				827B06952A034A1500362A5B /* ContentView.swift */,
@@ -95,6 +98,14 @@
 				827B06AA2A03533B00362A5B /* UserDefaultAccess+Keys.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		82DDEFE52A0526B30096951A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				82DDEFE62A0526BF0096951A /* LanguagesModel.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82DDEFE72A0526BF0096951A /* LanguagesModel.swift in Sources */,
 				827B06A32A034A4100362A5B /* ReadManager.swift in Sources */,
 				827B06A62A0352F300362A5B /* DataManager.swift in Sources */,
 				827B06AB2A03533B00362A5B /* UserDefaultAccess+Keys.swift in Sources */,
@@ -293,6 +305,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Read4All/Read4All.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -319,12 +332,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = maatheusgois.Read4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -333,6 +346,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Read4All/Read4All.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -359,12 +373,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = maatheusgois.Read4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};

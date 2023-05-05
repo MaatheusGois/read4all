@@ -10,20 +10,21 @@ import Foundation
 
 struct ContentView: View {
 
-    @ObservedObject var manager = ReadTextManager()
+    @StateObject var manager = ReadTextManager()
 
     @State var text = DataStorage.lastText
-    @State var volume: Float = 0
 
     @State private var showingAlert = false
     @State private var textSelected = false
 
     var body: some View {
         VStack {
+            #if !os(tvOS)
             TextEditor(text: $text).onChange(of: text) { _ in
                 DataStorage.lastText = text
                 manager.reset()
-            }.onReceive(NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)) { obj in
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)) { obj in
                 guard !textSelected else { return }
                 if let textView = obj.object as? NSTextView {
                     manager.textView = textView
@@ -33,6 +34,7 @@ struct ContentView: View {
                     textSelected = true
                 }
             }
+            #endif
 
             ProgressView(value: manager.currentSpeak, total: manager.totalSpeak)
 
@@ -42,7 +44,6 @@ struct ContentView: View {
                         showingAlert = true
                     } else {
                         manager.read(text: text)
-                        manager.volume(volume)
                     }
                 } label: {
                     Text(manager.isSpeaking ? "Stop" : "Read")
@@ -56,6 +57,13 @@ struct ContentView: View {
                     }
                 }
 
+                Spacer()
+
+                #if !os(tvOS)
+                Slider(value: $manager.speed, in: 0...1) {
+                    Text("Spped")
+                }
+                #endif
                 Spacer()
 
                 if manager.speechUtterance != nil {
